@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>TempleEase - Temple Visit Booking</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Navigation Bar -->
+    <header>
+        <nav class="navbar">
+
+            <div class="logo">
+                🛕 TempleEase
+            </div>
+
+            <div class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#temples">Temples</a>
+                <a href="#bookings">My Bookings</a>
+            </div>
+
+        </nav>
+    </header>
+
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+
+        <div class="hero-content">
+
+            <h1>Plan Your Temple Visit</h1>
+
+            <p>
+                Discover temples, choose your preferred date and session,
+                and manage your visit with ease.
+            </p>
+
+            <button id="exploreBtn">
+                Explore Temples
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- Temple Section -->
+    <section id="temples" class="section">
+
+        <div class="section-heading">
+
+            <h2>Explore Temples</h2>
+
+            <p>
+                Choose a temple and find available visiting sessions.
+            </p>
+
+        </div>
+
+
+        <!-- Search -->
+        <div class="search-container">
+
+            <input
+                type="text"
+                id="templeSearch"
+                placeholder="Search temples..."
+            >
+
+        </div>
+
+
+        <!-- Temple Cards -->
+        <div id="templeList" class="temple-grid">
+
+            <!-- Temple cards will be added dynamically using JavaScript -->
+
+        </div>
+
+    </section>
+
+
+    <!-- Booking Section -->
+    <section id="booking" class="section booking-section">
+
+        <div class="section-heading">
+
+            <h2>Book Your Visit</h2>
+
+            <p>
+                Select a temple, date and session to continue.
+            </p>
+
+        </div>
+
+
+        <form id="bookingForm">
+
+    <div class="form-group">
+
+        <label for="templeSelect">
+            Select Temple
+        </label>
+
+        <select id="templeSelect" required>
+
+            <option value="">
+                Select a temple
+            </option>
+
+        </select>
+
+    </div>
+
+            <div class="form-group">
+
+                <label for="visitorName">
+                    Visitor Name
+                </label>
+
+                <input
+                    type="text"
+                    id="visitorName"
+                    placeholder="Enter your name"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="contact">
+                    Contact Number
+                </label>
+
+                <input
+                    type="tel"
+                    id="contact"
+                    placeholder="Enter 10-digit mobile number"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="visitorCount">
+                    Number of Visitors
+                </label>
+
+                <input
+                    type="number"
+                    id="visitorCount"
+                    min="1"
+                    max="10"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="visitDate">
+                    Visit Date
+                </label>
+
+                <input
+                    type="date"
+                    id="visitDate"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="session">
+                    Select Session
+                </label>
+
+                <select id="session" required>
+
+                    <option value="">
+                        Select a session
+                    </option>
+
+                    <option value="Morning">
+                        Morning
+                    </option>
+
+                    <option value="Afternoon">
+                        Afternoon
+                    </option>
+
+                    <option value="Evening">
+                        Evening
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="notes">
+                    Additional Information
+                </label>
+
+                <textarea
+                    id="notes"
+                    placeholder="Any additional information..."
+                    rows="4"
+                ></textarea>
+
+            </div>
+
+
+            <button type="submit">
+                Confirm Booking
+            </button>
+
+        </form>
+
+        <!-- Success/Error messages -->
+        <div id="message"></div>
+
+    </section>
+
+
+    <!-- My Bookings Section -->
+    <section id="bookings" class="section">
+
+        <div class="section-heading">
+
+            <h2>My Bookings</h2>
+
+            <p>
+                View and manage your temple visit bookings.
+            </p>
+
+        </div>
+
+
+        <!-- Booking search -->
+        <div class="search-container">
+
+            <input
+                type="text"
+                id="bookingSearch"
+                placeholder="Search by booking ID or visitor name..."
+            >
+
+        </div>
+
+
+        <!-- Booking list -->
+        <div id="bookingList">
+
+            <!-- Bookings will be rendered dynamically -->
+
+        </div>
+
+    </section>
+
+
+    <!-- Footer -->
+    <footer>
+
+        <p>
+            © 2026 TempleEase | Temple Visit & Crowd Booking System
+        </p>
+
+    </footer>
+<!-- ===============================
+     Modify Booking Modal
+     =============================== -->
+
+<div id="modifyModal" class="modify-modal">
+
+    <div class="modify-box">
+
+        <h2>✏️ Modify Booking</h2>
+
+        <input
+            type="hidden"
+            id="modifyBookingId"
+        >
+
+        <label for="modifyDate">
+            Visit Date
+        </label>
+
+        <input
+            type="date"
+            id="modifyDate"
+        >
+
+        <label for="modifySession">
+            Session
+        </label>
+
+        <select id="modifySession">
+
+            <option value="">Select Session</option>
+
+            <option value="Morning">
+                Morning
+            </option>
+
+            <option value="Afternoon">
+                Afternoon
+            </option>
+
+            <option value="Evening">
+                Evening
+            </option>
+
+        </select>
+
+        <div class="modify-buttons">
+
+            <button
+                type="button"
+                onclick="saveModifiedBooking()"
+            >
+                Save Changes
+            </button>
+
+            <button
+                type="button"
+                onclick="closeModifyModal()"
+            >
+                Cancel
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
